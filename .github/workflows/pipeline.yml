@@ -7,8 +7,6 @@ on:
 
 env:
   pack-file: 'pack.toml'
-  default-release-modrinth: 'true'
-  default-release-curseforge: 'false'
 
 
 jobs:
@@ -143,8 +141,8 @@ jobs:
         with:
           modpack: ${{ matrix.modpack }}
           release-tag: ${{ steps.tag.outputs.tag }}
-          build-modrinth: ${{ env.default-release-modrinth }}
-          build-curse: ${{ env.default-release-curseforge }}
+          build-modrinth: ${{ steps.set-mod-vendors.outputs.modrinth }}
+          build-curse: ${{ steps.set-mod-vendors.outputs.curseforge }}
         if: ${{ steps.release-please.outputs.releases_created }}
 
 
