@@ -56,16 +56,20 @@ It also includes an `nix flake` for you fellow nix enjoyers! The actions also us
      - `CURSEFORGE_TOKEN`, `CURSEFORGE_ID` for CurseForge authentication.
    - Enable "Allow GitHub Actions to create and approve pull requests" under "Settings" -> "Actions" -> "General" -> "Workflow permissions".
 
-3. **Initialize Your Modpack**
+3. **Set up Vars**
+   - Navigate to "Settings" -> "Secrets" and add the following Variables:
+     - `RELEASE_MODRINTH`, `RELEASE_CURSE` to either `true` or `false`.
+
+4. **Initialize Your Modpack**
 
    - Generate a `pack.toml` file using `packwiz` (installation instructions [here](https://packwiz.infra.link/installation/)) within a modpack folder.
    - Begin by running `packwiz init`, preferably within the `main` directory.
   
-4. **Set a release channel**
+5. **Set a release channel**
    - By default this template uses the `beta (0.1.0)` channel, you can switch it to `release (1.0.0)` when you are ready!
    - This can be done via executing `.github/workflows/bump-version-release.yml`!
 
-5. **You are good to go!**
+6. **You are good to go!**
    - You can now merge the release PR that release please has made, sit back and enjoy a cup of coffee! ☕ ^-^
 
 ### Troubleshooting and Support

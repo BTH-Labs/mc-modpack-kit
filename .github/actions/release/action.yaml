@@ -14,6 +14,13 @@ inputs:
     description: "Should the Modpack Be Uploaded to CurseForge"
     required: true
 
+  release-modrinth:
+    description: "Should the Modpack Be Released on Modrinth"
+    required: true
+  release-curse:
+    description: "Should the Modpack Be Released on CurseForge"
+    required: true
+
   MODRINTH_TOKEN:
     required: false
     description: "Token used to uploading modpack to Modrinth"
@@ -99,6 +106,7 @@ runs:
           files: "*.mrpack"
           version: ${{ inputs.release-tag }}
           version-type: ${{ steps.release-type.outputs.release-type }}
+        if: inputs.upload-modrinth == 'true'
 
       - name: Print Modrinth upload status
         if: steps.modrinth.outcome == 'success'
@@ -119,6 +127,7 @@ runs:
           files: "*.zip"
           version: ${{ inputs.release-tag }}
           version-type: ${{ steps.release-type.outputs.release-type }}
+        if: inputs.upload-curse == 'true'
 
       - name: Print Curseforge upload status
         if: steps.curseforge.outcome == 'success'

@@ -7,8 +7,8 @@ on:
 
 env:
   pack-file: 'pack.toml'
-  default-release-modrinth: 'true'
-  default-release-curseforge: 'false'
+  default-release-modrinth: ${{ vars.RELEASE_MODRINTH || 'false' }}
+  default-release-curseforge: ${{ vars.RELEASE_CURSEFORGE || 'false' }}
 
 
 jobs:
@@ -158,6 +158,8 @@ jobs:
           game-version: ${{ steps.parse.outputs.game-version }}
           upload-modrinth: ${{ steps.set-mod-vendors.outputs.modrinth }}
           upload-curse: ${{ steps.set-mod-vendors.outputs.curseforge }}
+          release-modrinth: ${{ env.default-release-modrinth }}
+          release-curse: ${{ env.default-release-curseforge }}
           MODRINTH_ID: ${{ secrets.MODRINTH_ID }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_ID: ${{ secrets.CURSEFORGE_ID }}
